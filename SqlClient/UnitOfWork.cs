@@ -84,8 +84,8 @@ public class UnitOfWork(IDatabase database) : IDisposable, IAsyncDisposable
     {
         Write("Enter notes separated by , or ; : ");
         var notes = ReadLine();
-       
-        database.MassiveInsert(notes?.Split([',',';'],StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? []);
+        var splitted = notes?.Split([',',';'],StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries) ?? [];
+        database.MassiveInsert(splitted);
         
         WriteLine("Notes inserted successfully.");
     }
